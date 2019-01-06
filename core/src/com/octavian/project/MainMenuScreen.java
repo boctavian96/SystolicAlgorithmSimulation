@@ -93,15 +93,13 @@ public class MainMenuScreen extends AbstractScreen {
 		font32.draw(gameBatch, "Exit", buttonX, buttonY - 4 * Config.WORLD_UNIT);
 
 		gameBatch.end();
-
-		drawDebug();
-
 	}
 
 	@Override
 	public void render(float delta) {
 		update();
 		draw();
+		// drawDebug();
 	}
 
 }
