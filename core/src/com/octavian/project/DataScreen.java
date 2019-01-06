@@ -25,7 +25,7 @@ public class DataScreen extends AbstractScreen {
 		super();
 		this.main = main;
 		shapeRenderer = new ShapeRenderer();
-		processors = new ArrayList();
+		processors = new ArrayList<>();
 
 		tick = 0;
 
