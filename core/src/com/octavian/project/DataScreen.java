@@ -36,26 +36,26 @@ public class DataScreen extends AbstractScreen {
 		shapeRenderer = new ShapeRenderer();
 		processors = new ArrayList<>();
 		op = new SystolicMatrixMultiplication();
-		matrixes = op.multiplication();
+		matrixes = op.archMultiplication();
 		arrowLeft = new Texture(Gdx.files.internal("lgdxRect.png"));
 		arrowUp = new Texture(Gdx.files.internal("lgdxRectUp.png"));
 
 		tick = 0;
 
 		// Row 1
-		processors.add(new ProcessorUI("p1", PROCESSOR_SIZE, 6 * Config.WORLD_UNIT, 18 * Config.WORLD_UNIT));
-		processors.add(new ProcessorUI("p2", PROCESSOR_SIZE, 12 * Config.WORLD_UNIT, 18 * Config.WORLD_UNIT));
-		processors.add(new ProcessorUI("p3", PROCESSOR_SIZE, 18 * Config.WORLD_UNIT, 18 * Config.WORLD_UNIT));
+		processors.add(new ProcessorUI("0", PROCESSOR_SIZE, 6 * Config.WORLD_UNIT, 18 * Config.WORLD_UNIT));
+		processors.add(new ProcessorUI("0", PROCESSOR_SIZE, 12 * Config.WORLD_UNIT, 18 * Config.WORLD_UNIT));
+		processors.add(new ProcessorUI("0", PROCESSOR_SIZE, 18 * Config.WORLD_UNIT, 18 * Config.WORLD_UNIT));
 
 		// Row 2
-		processors.add(new ProcessorUI("p4", PROCESSOR_SIZE, 6 * Config.WORLD_UNIT, 12 * Config.WORLD_UNIT));
-		processors.add(new ProcessorUI("p5", PROCESSOR_SIZE, 12 * Config.WORLD_UNIT, 12 * Config.WORLD_UNIT));
-		processors.add(new ProcessorUI("p6", PROCESSOR_SIZE, 18 * Config.WORLD_UNIT, 12 * Config.WORLD_UNIT));
+		processors.add(new ProcessorUI("0", PROCESSOR_SIZE, 6 * Config.WORLD_UNIT, 12 * Config.WORLD_UNIT));
+		processors.add(new ProcessorUI("0", PROCESSOR_SIZE, 12 * Config.WORLD_UNIT, 12 * Config.WORLD_UNIT));
+		processors.add(new ProcessorUI("0", PROCESSOR_SIZE, 18 * Config.WORLD_UNIT, 12 * Config.WORLD_UNIT));
 
 		// Row 3
-		processors.add(new ProcessorUI("p7", PROCESSOR_SIZE, 6 * Config.WORLD_UNIT, 6 * Config.WORLD_UNIT));
-		processors.add(new ProcessorUI("p8", PROCESSOR_SIZE, 12 * Config.WORLD_UNIT, 6 * Config.WORLD_UNIT));
-		processors.add(new ProcessorUI("p9", PROCESSOR_SIZE, 18 * Config.WORLD_UNIT, 6 * Config.WORLD_UNIT));
+		processors.add(new ProcessorUI("0", PROCESSOR_SIZE, 6 * Config.WORLD_UNIT, 6 * Config.WORLD_UNIT));
+		processors.add(new ProcessorUI("0", PROCESSOR_SIZE, 12 * Config.WORLD_UNIT, 6 * Config.WORLD_UNIT));
+		processors.add(new ProcessorUI("0", PROCESSOR_SIZE, 18 * Config.WORLD_UNIT, 6 * Config.WORLD_UNIT));
 	}
 
 	public void update() {

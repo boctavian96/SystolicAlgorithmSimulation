@@ -25,7 +25,7 @@ public class SystolicMatrixMultiplication {
 	}
 
 	/**
-	 * Hardcoded version. Only for debugging purposes.
+	 * Hardcoded version. It's not used in the program. Only for debugging purposes.
 	 *
 	 * @return States.
 	 */
@@ -145,6 +145,9 @@ public class SystolicMatrixMultiplication {
 		ProcessorArchitecture processorsArchitecture = new ProcessorArchitecture();
 		List<GenericMatrix> state = new ArrayList<>();
 
+		// Tick 0, no values.
+		state.add(new GenericMatrix());
+
 		List<Row> rows = a.toRows();
 		List<Column> cols = b.toCols();
 
@@ -158,6 +161,8 @@ public class SystolicMatrixMultiplication {
 			rows = cutLastRow(rows);
 			cols = cutLastCol(cols);
 		}
+
+		// Pushing extra 2 ticks with null elements.
 
 		processorsArchitecture.pushNull();
 		processorsArchitecture.process();
