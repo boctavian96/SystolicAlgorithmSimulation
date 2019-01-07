@@ -16,7 +16,7 @@ public class MatrixGenerator {
 
 		for (int i = 0; i < MATRIX_SIZE; i++) {
 			for (int j = 0; j < MATRIX_SIZE; j++) {
-				matrix[i][j] = rand.nextInt(MAX_VALUE);
+				matrix[i][j] = rand.nextInt(MAX_VALUE) + 1;
 			}
 		}
 
