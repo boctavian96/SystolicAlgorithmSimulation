@@ -1,6 +1,7 @@
 package com.octavian.logic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.octavian.logic.meta.Column;
@@ -9,11 +10,6 @@ import com.octavian.logic.meta.Row;
 public class GenericMatrix {
 
 	public int[][] matrix;
-
-	Processor processor;
-
-	// Debug
-	StringBuilder[][] multMatrix = new StringBuilder[3][3];
 
 	public GenericMatrix() {
 		matrix = new int[3][3];
@@ -69,6 +65,28 @@ public class GenericMatrix {
 		}
 
 		return sb.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.deepHashCode(matrix);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		GenericMatrix other = (GenericMatrix) obj;
+		if (!Arrays.deepEquals(matrix, other.matrix))
+			return false;
+		return true;
 	}
 
 }

@@ -10,115 +10,16 @@ public class SystolicMatrixMultiplication {
 
 	public GenericMatrix a;
 	public GenericMatrix b;
-	GenericMatrix result;
-
-	int[][] dummy1 = new int[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
-	int[][] dummy2 = new int[][] { { 4, 6, 9 }, { 3, 2, 1 }, { 5, 6, 1 } };
 
 	public SystolicMatrixMultiplication() {
-		// a = MatrixGenerator.generateMatrix();
-		// b = MatrixGenerator.generateMatrix();
+		a = MatrixGenerator.generateMatrix();
+		b = MatrixGenerator.generateMatrix();
 
-		a = new GenericMatrix(dummy1);
-		b = new GenericMatrix(dummy2);
-		result = new GenericMatrix();
 	}
 
-	/**
-	 * Hardcoded version. It's not used in the program. Only for debugging purposes.
-	 *
-	 * @return States.
-	 */
-	public List<GenericMatrix> multiplicationHardcode() {
-		List<GenericMatrix> state = new ArrayList<>();
-
-		// 0
-		state.add(new GenericMatrix());
-
-		// 1
-		state.add(
-				new GenericMatrix(new int[][] { { a.matrix[0][0] * b.matrix[0][0], 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }));
-
-		// 2
-		state.add(
-				new GenericMatrix(new int[][] {
-						{ a.matrix[0][0] * b.matrix[0][0] + a.matrix[0][1] * b.matrix[1][0],
-								a.matrix[0][0] * b.matrix[0][1], 0 },
-						{ a.matrix[1][0] * b.matrix[0][0], 0, 0 }, { 0, 0, 0 } }));
-
-		// 3
-		state.add(new GenericMatrix(new int[][] {
-				{ a.matrix[0][0] * b.matrix[0][0] + a.matrix[0][1] * b.matrix[1][0] + a.matrix[0][2] * b.matrix[2][0],
-						a.matrix[0][0] * b.matrix[0][1] + a.matrix[0][1] * b.matrix[1][1],
-						a.matrix[0][0] * b.matrix[0][2] },
-
-				{ a.matrix[1][0] * b.matrix[0][0] + a.matrix[1][1] * b.matrix[1][0], a.matrix[1][0] * b.matrix[0][1],
-						0 },
-				{ a.matrix[2][0] * b.matrix[0][0], 0, 0 } }));
-
-		// 4
-
-		state.add(new GenericMatrix(new int[][] {
-				{ a.matrix[0][0] * b.matrix[0][0] + a.matrix[0][1] * b.matrix[1][0] + a.matrix[0][2] * b.matrix[2][0],
-						a.matrix[0][0] * b.matrix[0][1] + a.matrix[0][1] * b.matrix[1][1]
-								+ a.matrix[0][2] * b.matrix[2][1],
-						a.matrix[0][0] * b.matrix[0][2] + a.matrix[0][1] * b.matrix[1][2] },
-
-				{ a.matrix[1][0] * b.matrix[0][0] + a.matrix[1][1] * b.matrix[1][0] + a.matrix[1][2] * b.matrix[2][0],
-						a.matrix[1][0] * b.matrix[0][1] + a.matrix[1][1] * b.matrix[1][1],
-						a.matrix[1][0] * b.matrix[0][2] },
-				{ a.matrix[2][0] * b.matrix[0][0] + a.matrix[2][1] * b.matrix[1][0], a.matrix[2][0] * b.matrix[0][1],
-						0 } }));
-
-		// 5
-		state.add(new GenericMatrix(new int[][] { {
-				a.matrix[0][0] * b.matrix[0][0] + a.matrix[0][1] * b.matrix[1][0] + a.matrix[0][2] * b.matrix[2][0],
-				a.matrix[0][0] * b.matrix[0][1] + a.matrix[0][1] * b.matrix[1][1] + a.matrix[0][2] * b.matrix[2][1],
-				a.matrix[0][0] * b.matrix[0][2] + a.matrix[0][1] * b.matrix[1][2] + a.matrix[0][2] * b.matrix[2][2] },
-
-				{ a.matrix[1][0] * b.matrix[0][0] + a.matrix[1][1] * b.matrix[1][0] + a.matrix[1][2] * b.matrix[2][0],
-						a.matrix[1][0] * b.matrix[0][1] + a.matrix[1][1] * b.matrix[1][1]
-								+ a.matrix[1][2] * b.matrix[2][1],
-						a.matrix[1][0] * b.matrix[0][2] + a.matrix[1][1] * b.matrix[1][2] },
-				{ a.matrix[2][0] * b.matrix[0][0] + a.matrix[2][1] * b.matrix[1][0] + a.matrix[2][2] * b.matrix[2][0],
-						a.matrix[2][0] * b.matrix[0][1] + a.matrix[2][1] * b.matrix[1][1],
-						a.matrix[2][0] * b.matrix[0][2] } }));
-
-		// 6
-		state.add(new GenericMatrix(new int[][] { {
-				a.matrix[0][0] * b.matrix[0][0] + a.matrix[0][1] * b.matrix[1][0] + a.matrix[0][2] * b.matrix[2][0],
-				a.matrix[0][0] * b.matrix[0][1] + a.matrix[0][1] * b.matrix[1][1] + a.matrix[0][2] * b.matrix[2][1],
-				a.matrix[0][0] * b.matrix[0][2] + a.matrix[0][1] * b.matrix[1][2] + a.matrix[0][2] * b.matrix[2][2] },
-
-				{ a.matrix[1][0] * b.matrix[0][0] + a.matrix[1][1] * b.matrix[1][0] + a.matrix[1][2] * b.matrix[2][0],
-						a.matrix[1][0] * b.matrix[0][1] + a.matrix[1][1] * b.matrix[1][1]
-								+ a.matrix[1][2] * b.matrix[2][1],
-						a.matrix[1][0] * b.matrix[0][2] + a.matrix[1][1] * b.matrix[1][2]
-								+ a.matrix[1][2] * b.matrix[2][2] },
-				{ a.matrix[2][0] * b.matrix[0][0] + a.matrix[2][1] * b.matrix[1][0] + a.matrix[2][2] * b.matrix[2][0],
-						a.matrix[2][0] * b.matrix[0][1] + a.matrix[2][1] * b.matrix[1][1]
-								+ a.matrix[2][2] * b.matrix[2][1],
-						a.matrix[2][0] * b.matrix[0][2] + a.matrix[2][1] * b.matrix[1][2] } }));
-
-		// 7
-
-		state.add(new GenericMatrix(new int[][] { {
-				a.matrix[0][0] * b.matrix[0][0] + a.matrix[0][1] * b.matrix[1][0] + a.matrix[0][2] * b.matrix[2][0],
-				a.matrix[0][0] * b.matrix[0][1] + a.matrix[0][1] * b.matrix[1][1] + a.matrix[0][2] * b.matrix[2][1],
-				a.matrix[0][0] * b.matrix[0][2] + a.matrix[0][1] * b.matrix[1][2] + a.matrix[0][2] * b.matrix[2][2] },
-
-				{ a.matrix[1][0] * b.matrix[0][0] + a.matrix[1][1] * b.matrix[1][0] + a.matrix[1][2] * b.matrix[2][0],
-						a.matrix[1][0] * b.matrix[0][1] + a.matrix[1][1] * b.matrix[1][1]
-								+ a.matrix[1][2] * b.matrix[2][1],
-						a.matrix[1][0] * b.matrix[0][2] + a.matrix[1][1] * b.matrix[1][2]
-								+ a.matrix[1][2] * b.matrix[2][2] },
-				{ a.matrix[2][0] * b.matrix[0][0] + a.matrix[2][1] * b.matrix[1][0] + a.matrix[2][2] * b.matrix[2][0],
-						a.matrix[2][0] * b.matrix[0][1] + a.matrix[2][1] * b.matrix[1][1]
-								+ a.matrix[2][2] * b.matrix[2][1],
-						a.matrix[2][0] * b.matrix[0][2] + a.matrix[2][1] * b.matrix[1][2]
-								+ a.matrix[2][2] * b.matrix[2][2] } }));
-
-		return state;
+	public SystolicMatrixMultiplication(int[][] data1, int[][] data2) {
+		a = new GenericMatrix(data1);
+		b = new GenericMatrix(data2);
 	}
 
 	private List<Row> cutLastRow(List<Row> rows) {
@@ -141,7 +42,7 @@ public class SystolicMatrixMultiplication {
 		return colsWithoutLastElement;
 	}
 
-	public List<GenericMatrix> archMultiplication() {
+	public List<GenericMatrix> multiplication() {
 		ProcessorArchitecture processorsArchitecture = new ProcessorArchitecture();
 		List<GenericMatrix> state = new ArrayList<>();
 
@@ -156,21 +57,20 @@ public class SystolicMatrixMultiplication {
 			processorsArchitecture.pushCol(cols);
 			processorsArchitecture.process();
 
-			state.add(processorsArchitecture.archToMatrix());
+			state.add(processorsArchitecture.architectureToMatrix());
 
 			rows = cutLastRow(rows);
 			cols = cutLastCol(cols);
 		}
 
 		// Pushing extra 2 ticks with null elements.
+		processorsArchitecture.pushNull();
+		processorsArchitecture.process();
+		state.add(processorsArchitecture.architectureToMatrix());
 
 		processorsArchitecture.pushNull();
 		processorsArchitecture.process();
-		state.add(processorsArchitecture.archToMatrix());
-
-		processorsArchitecture.pushNull();
-		processorsArchitecture.process();
-		state.add(processorsArchitecture.archToMatrix());
+		state.add(processorsArchitecture.architectureToMatrix());
 
 		return state;
 

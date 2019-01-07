@@ -36,7 +36,7 @@ public class DataScreen extends AbstractScreen {
 		shapeRenderer = new ShapeRenderer();
 		processors = new ArrayList<>();
 		op = new SystolicMatrixMultiplication();
-		matrixes = op.archMultiplication();
+		matrixes = op.multiplication();
 		arrowLeft = new Texture(Gdx.files.internal("lgdxRect.png"));
 		arrowUp = new Texture(Gdx.files.internal("lgdxRectUp.png"));
 
