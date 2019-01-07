@@ -89,7 +89,7 @@ public class MainMenuScreen extends AbstractScreen {
 		float buttonX = Config.WORLD_WIDTH / 2 - 2 * Config.WORLD_UNIT;
 		float buttonY = Config.WORLD_HEIGHT - 8 * Config.WORLD_UNIT;
 
-		font32.draw(gameBatch, "Set Input", buttonX, buttonY);
+		font32.draw(gameBatch, "Begin", buttonX, buttonY);
 		font32.draw(gameBatch, "About", buttonX, buttonY - 2 * Config.WORLD_UNIT);
 		font32.draw(gameBatch, "Exit", buttonX, buttonY - 4 * Config.WORLD_UNIT);
 
