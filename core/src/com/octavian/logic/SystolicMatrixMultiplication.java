@@ -24,24 +24,30 @@ public class SystolicMatrixMultiplication {
 		result = new GenericMatrix();
 	}
 
-	public List<GenericMatrix> multiplication() {
-		List<GenericMatrix> our = new ArrayList<>();
+	/**
+	 * Hardcoded version. Only for debugging purposes.
+	 *
+	 * @return States.
+	 */
+	public List<GenericMatrix> multiplicationHardcode() {
+		List<GenericMatrix> state = new ArrayList<>();
 
 		// 0
-		our.add(new GenericMatrix());
+		state.add(new GenericMatrix());
 
 		// 1
-		our.add(new GenericMatrix(new int[][] { { a.matrix[0][0] * b.matrix[0][0], 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }));
+		state.add(
+				new GenericMatrix(new int[][] { { a.matrix[0][0] * b.matrix[0][0], 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }));
 
 		// 2
-		our.add(new GenericMatrix(
-				new int[][] {
+		state.add(
+				new GenericMatrix(new int[][] {
 						{ a.matrix[0][0] * b.matrix[0][0] + a.matrix[0][1] * b.matrix[1][0],
 								a.matrix[0][0] * b.matrix[0][1], 0 },
 						{ a.matrix[1][0] * b.matrix[0][0], 0, 0 }, { 0, 0, 0 } }));
 
 		// 3
-		our.add(new GenericMatrix(new int[][] {
+		state.add(new GenericMatrix(new int[][] {
 				{ a.matrix[0][0] * b.matrix[0][0] + a.matrix[0][1] * b.matrix[1][0] + a.matrix[0][2] * b.matrix[2][0],
 						a.matrix[0][0] * b.matrix[0][1] + a.matrix[0][1] * b.matrix[1][1],
 						a.matrix[0][0] * b.matrix[0][2] },
@@ -52,7 +58,7 @@ public class SystolicMatrixMultiplication {
 
 		// 4
 
-		our.add(new GenericMatrix(new int[][] {
+		state.add(new GenericMatrix(new int[][] {
 				{ a.matrix[0][0] * b.matrix[0][0] + a.matrix[0][1] * b.matrix[1][0] + a.matrix[0][2] * b.matrix[2][0],
 						a.matrix[0][0] * b.matrix[0][1] + a.matrix[0][1] * b.matrix[1][1]
 								+ a.matrix[0][2] * b.matrix[2][1],
@@ -65,7 +71,7 @@ public class SystolicMatrixMultiplication {
 						0 } }));
 
 		// 5
-		our.add(new GenericMatrix(new int[][] { {
+		state.add(new GenericMatrix(new int[][] { {
 				a.matrix[0][0] * b.matrix[0][0] + a.matrix[0][1] * b.matrix[1][0] + a.matrix[0][2] * b.matrix[2][0],
 				a.matrix[0][0] * b.matrix[0][1] + a.matrix[0][1] * b.matrix[1][1] + a.matrix[0][2] * b.matrix[2][1],
 				a.matrix[0][0] * b.matrix[0][2] + a.matrix[0][1] * b.matrix[1][2] + a.matrix[0][2] * b.matrix[2][2] },
@@ -79,7 +85,7 @@ public class SystolicMatrixMultiplication {
 						a.matrix[2][0] * b.matrix[0][2] } }));
 
 		// 6
-		our.add(new GenericMatrix(new int[][] { {
+		state.add(new GenericMatrix(new int[][] { {
 				a.matrix[0][0] * b.matrix[0][0] + a.matrix[0][1] * b.matrix[1][0] + a.matrix[0][2] * b.matrix[2][0],
 				a.matrix[0][0] * b.matrix[0][1] + a.matrix[0][1] * b.matrix[1][1] + a.matrix[0][2] * b.matrix[2][1],
 				a.matrix[0][0] * b.matrix[0][2] + a.matrix[0][1] * b.matrix[1][2] + a.matrix[0][2] * b.matrix[2][2] },
@@ -96,7 +102,7 @@ public class SystolicMatrixMultiplication {
 
 		// 7
 
-		our.add(new GenericMatrix(new int[][] { {
+		state.add(new GenericMatrix(new int[][] { {
 				a.matrix[0][0] * b.matrix[0][0] + a.matrix[0][1] * b.matrix[1][0] + a.matrix[0][2] * b.matrix[2][0],
 				a.matrix[0][0] * b.matrix[0][1] + a.matrix[0][1] * b.matrix[1][1] + a.matrix[0][2] * b.matrix[2][1],
 				a.matrix[0][0] * b.matrix[0][2] + a.matrix[0][1] * b.matrix[1][2] + a.matrix[0][2] * b.matrix[2][2] },
@@ -112,57 +118,56 @@ public class SystolicMatrixMultiplication {
 						a.matrix[2][0] * b.matrix[0][2] + a.matrix[2][1] * b.matrix[1][2]
 								+ a.matrix[2][2] * b.matrix[2][2] } }));
 
-		return our;
+		return state;
 	}
 
 	private List<Row> cutLastRow(List<Row> rows) {
-		List<Row> newRows = new ArrayList<>(rows);
+		List<Row> rowsWithoutLastElement = new ArrayList<>(rows);
 
-		for (Row row : newRows) {
+		for (Row row : rowsWithoutLastElement) {
 			row.getValues().remove(row.getValues().size() - 1);
 		}
 
-		return newRows;
+		return rowsWithoutLastElement;
 	}
 
 	private List<Column> cutLastCol(List<Column> cols) {
-		List<Column> newcols = new ArrayList<>(cols);
+		List<Column> colsWithoutLastElement = new ArrayList<>(cols);
 
-		for (Column col : newcols) {
+		for (Column col : colsWithoutLastElement) {
 			col.getValues().remove(col.getValues().size() - 1);
 		}
 
-		return newcols;
+		return colsWithoutLastElement;
 	}
 
 	public List<GenericMatrix> archMultiplication() {
-		ProcessorArchitecture arch = new ProcessorArchitecture();
-		List<GenericMatrix> our = new ArrayList<>();
+		ProcessorArchitecture processorsArchitecture = new ProcessorArchitecture();
+		List<GenericMatrix> state = new ArrayList<>();
 
 		List<Row> rows = a.toRows();
 		List<Column> cols = b.toCols();
 
 		for (int i = 0; i < 5; i++) {
-			// arch.sendVars();
-			arch.pushRow(rows);
-			arch.pushCol(cols);
-			arch.process();
+			processorsArchitecture.pushRow(rows);
+			processorsArchitecture.pushCol(cols);
+			processorsArchitecture.process();
 
-			our.add(arch.archToMatrix());
+			state.add(processorsArchitecture.archToMatrix());
 
 			rows = cutLastRow(rows);
 			cols = cutLastCol(cols);
 		}
 
-		arch.pushNull();
-		arch.process();
-		our.add(arch.archToMatrix());
+		processorsArchitecture.pushNull();
+		processorsArchitecture.process();
+		state.add(processorsArchitecture.archToMatrix());
 
-		arch.pushNull();
-		arch.process();
-		our.add(arch.archToMatrix());
+		processorsArchitecture.pushNull();
+		processorsArchitecture.process();
+		state.add(processorsArchitecture.archToMatrix());
 
-		return our;
+		return state;
 
 	}
 }
