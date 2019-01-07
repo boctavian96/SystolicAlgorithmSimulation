@@ -3,6 +3,8 @@ package com.octavian.logic.meta;
 import java.util.List;
 
 public class Row {
+	private static final Integer DUMMY_VALUE = 0;
+
 	private List<Integer> values;
 	private int rowNumber;
 
@@ -10,16 +12,16 @@ public class Row {
 		this.values = values;
 		this.rowNumber = delay;
 		for (int i = 0; i < delay; i++) {
-			this.values.add(new Integer(0));
+			this.values.add(DUMMY_VALUE);
 		}
 
 		if (delay == 1) {
-			this.values.add(0, new Integer(0));
+			this.values.add(0, DUMMY_VALUE);
 		}
 
 		if (delay == 0) {
-			this.values.add(0, new Integer(0));
-			this.values.add(0, new Integer(0));
+			this.values.add(0, DUMMY_VALUE);
+			this.values.add(0, DUMMY_VALUE);
 
 		}
 	}

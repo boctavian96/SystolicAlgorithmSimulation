@@ -9,10 +9,12 @@ import com.octavian.logic.meta.Row;
 
 public class GenericMatrix {
 
+	public static final int DEFAULT_SIZE = 3;
+
 	public int[][] matrix;
 
 	public GenericMatrix() {
-		matrix = new int[3][3];
+		matrix = new int[DEFAULT_SIZE][DEFAULT_SIZE];
 	}
 
 	public GenericMatrix(int[][] matrix) {
@@ -28,9 +30,9 @@ public class GenericMatrix {
 	public List<Column> toCols() {
 		List<Column> cols = new ArrayList<>();
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < DEFAULT_SIZE; i++) {
 			List<Integer> values = new ArrayList<>();
-			for (int j = 0; j < 3; j++) {
+			for (int j = 0; j < DEFAULT_SIZE; j++) {
 				values.add(matrix[j][i]);
 			}
 			cols.add(new Column(values, i));
@@ -42,9 +44,9 @@ public class GenericMatrix {
 	public List<Row> toRows() {
 		List<Row> rows = new ArrayList<>();
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < DEFAULT_SIZE; i++) {
 			List<Integer> values = new ArrayList<>();
-			for (int j = 0; j < 3; j++) {
+			for (int j = 0; j < DEFAULT_SIZE; j++) {
 				values.add(matrix[i][j]);
 			}
 			rows.add(new Row(values, i));
@@ -57,8 +59,8 @@ public class GenericMatrix {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
+		for (int i = 0; i < DEFAULT_SIZE; i++) {
+			for (int j = 0; j < DEFAULT_SIZE; j++) {
 				sb.append(matrix[i][j] + " ");
 			}
 			sb.append("\n");

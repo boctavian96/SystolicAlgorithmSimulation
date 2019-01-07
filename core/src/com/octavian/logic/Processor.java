@@ -6,7 +6,7 @@ public class Processor {
 	private Integer upper;
 	private Integer left;
 
-	// ID Processor
+	// Neighbors.
 	private Processor rightProcessor;
 	private Processor downProcessor;
 

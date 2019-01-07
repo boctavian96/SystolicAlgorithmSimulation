@@ -8,18 +8,18 @@ import com.octavian.logic.meta.Row;
 
 public class SystolicMatrixMultiplication {
 
-	public GenericMatrix a;
-	public GenericMatrix b;
+	public GenericMatrix matrixA;
+	public GenericMatrix matrixB;
 
 	public SystolicMatrixMultiplication() {
-		a = MatrixGenerator.generateMatrix();
-		b = MatrixGenerator.generateMatrix();
+		matrixA = MatrixGenerator.generateMatrix();
+		matrixB = MatrixGenerator.generateMatrix();
 
 	}
 
 	public SystolicMatrixMultiplication(int[][] data1, int[][] data2) {
-		a = new GenericMatrix(data1);
-		b = new GenericMatrix(data2);
+		matrixA = new GenericMatrix(data1);
+		matrixB = new GenericMatrix(data2);
 	}
 
 	private List<Row> cutLastRow(List<Row> rows) {
@@ -49,8 +49,8 @@ public class SystolicMatrixMultiplication {
 		// Tick 0, no values.
 		state.add(new GenericMatrix());
 
-		List<Row> rows = a.toRows();
-		List<Column> cols = b.toCols();
+		List<Row> rows = matrixA.toRows();
+		List<Column> cols = matrixB.toCols();
 
 		for (int i = 0; i < 5; i++) {
 			processorsArchitecture.pushRow(rows);

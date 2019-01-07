@@ -145,10 +145,10 @@ public class DataScreen extends AbstractScreen {
 
 		// MATRIX A AND MATRIX B
 		font16.draw(gameBatch, "Matrix A", Config.WORLD_WIDTH - 8 * Config.WORLD_UNIT, 17 * Config.WORLD_UNIT);
-		font16.draw(gameBatch, op.a.toString(), Config.WORLD_WIDTH - 8 * Config.WORLD_UNIT, 16 * Config.WORLD_UNIT);
+		font16.draw(gameBatch, op.matrixA.toString(), Config.WORLD_WIDTH - 8 * Config.WORLD_UNIT, 16 * Config.WORLD_UNIT);
 
 		font16.draw(gameBatch, "Matrix B", Config.WORLD_WIDTH - 8 * Config.WORLD_UNIT, 13 * Config.WORLD_UNIT);
-		font16.draw(gameBatch, op.b.toString(), Config.WORLD_WIDTH - 8 * Config.WORLD_UNIT, 12 * Config.WORLD_UNIT);
+		font16.draw(gameBatch, op.matrixB.toString(), Config.WORLD_WIDTH - 8 * Config.WORLD_UNIT, 12 * Config.WORLD_UNIT);
 
 		// LEGEND
 		font16.draw(gameBatch, "Legend", Config.WORLD_WIDTH - 8 * Config.WORLD_UNIT, 6 * Config.WORLD_UNIT);
