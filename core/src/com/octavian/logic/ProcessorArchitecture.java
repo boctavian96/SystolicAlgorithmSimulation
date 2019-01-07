@@ -59,7 +59,7 @@ public class ProcessorArchitecture {
 
 	public void pushCol(List<Column> col) {
 		// 0, 1, 2
-		// We push the cols only from up.
+		// We push the columns only from up.
 		processors.get(0).setUpper(col.get(0).getLastValue());
 		processors.get(1).setUpper(col.get(1).getLastValue());
 		processors.get(2).setUpper(col.get(2).getLastValue());
