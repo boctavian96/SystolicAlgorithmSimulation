@@ -82,13 +82,6 @@ public class ProcessorArchitecture {
 
 	}
 
-	public void sendVars() {
-		for (Processor p : processors) {
-			processors = p.sendVars(processors);
-			process();
-		}
-	}
-
 	public GenericMatrix architectureToMatrix() {
 		int[][] matrix = new int[3][3];
 		int processorIndex = 0;

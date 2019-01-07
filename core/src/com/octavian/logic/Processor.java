@@ -32,38 +32,6 @@ public class Processor {
 
 		if (isValid()) {
 			number += upper * left;
-
-			// if (downProcessor != null) {
-			// downProcessor.setUpper(upper);
-			// upper = null;
-			// }
-			//
-			// if (rightProcessor != null) {
-			// rightProcessor.setLeft(left);
-			// left = null;
-			// } else {
-			// upper = null;
-			// left = null;
-			// }
-		}
-
-		return processors;
-	}
-
-	public List<Processor> sendVars(List<Processor> processors) {
-
-		if (downProcessor != null) {
-			downProcessor.setUpper(upper);
-			upper = null;
-		} else {
-			upper = null;
-		}
-
-		if (rightProcessor != null) {
-			rightProcessor.setLeft(left);
-			left = null;
-		} else {
-			left = null;
 		}
 
 		return processors;
