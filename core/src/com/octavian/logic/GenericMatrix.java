@@ -1,25 +1,60 @@
 package com.octavian.logic;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.octavian.logic.meta.Column;
+import com.octavian.logic.meta.Row;
+
 public class GenericMatrix {
 
-	int[][] matrix;
+	public int[][] matrix;
 
 	Processor processor;
 
-	public GenericMatrix(int n) {
-		matrix = new int[n][n];
+	// Debug
+	StringBuilder[][] multMatrix = new StringBuilder[3][3];
+
+	public GenericMatrix() {
+		matrix = new int[3][3];
 	}
 
 	public GenericMatrix(int[][] matrix) {
 		this.matrix = matrix;
 	}
 
-	public int[] getNextRow() {
-		return new int[3];
+	public void push(Row row, Column col, int colNumber) {
+		matrix[0][colNumber] += row.getLastValue() * col.getLastValue();
+		matrix[1][colNumber] += row.getLastValue() * col.getLastValue();
+		matrix[2][colNumber] += row.getLastValue() * col.getLastValue();
 	}
 
-	public int[] getNextCol() {
-		return new int[3];
+	public List<Column> toCols() {
+		List<Column> cols = new ArrayList<>();
+
+		for (int i = 0; i < 3; i++) {
+			List<Integer> values = new ArrayList<>();
+			for (int j = 0; j < 3; j++) {
+				values.add(matrix[j][i]);
+			}
+			cols.add(new Column(values, i));
+		}
+
+		return cols;
+	}
+
+	public List<Row> toRows() {
+		List<Row> rows = new ArrayList<>();
+
+		for (int i = 0; i < 3; i++) {
+			List<Integer> values = new ArrayList<>();
+			for (int j = 0; j < 3; j++) {
+				values.add(matrix[i][j]);
+			}
+			rows.add(new Row(values, i));
+		}
+
+		return rows;
 	}
 
 	@Override

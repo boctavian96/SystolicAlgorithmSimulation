@@ -16,6 +16,10 @@ public class ProcessorUI {
 		shape.rect(proccesorRect.x, proccesorRect.y, proccesorRect.getHeight(), proccesorRect.getWidth());
 	}
 
+	public void setValue(String value) {
+		this.value = value;
+	}
+
 	public String getValue() {
 		return value;
 	}

@@ -12,28 +12,25 @@ public class MainMenuScreen extends AbstractScreen {
 
 	private Systolic main;
 
-	private Rectangle start;
-	private Rectangle about;
-	private Rectangle exit;
+	private Rectangle startBounds;
+	private Rectangle aboutBounds;
+	private Rectangle exitBounds;
 
 	// For Debug
-	private ShapeRenderer shapeRenderer;
+	private ShapeRenderer shapeDebugRenderer;
 
 	public MainMenuScreen(Systolic main) {
 		super();
 		this.main = main;
 
-		float buttonX = Config.WORLD_WIDTH / 2 - 2 * Config.WORLD_UNIT;
-		float buttonY = Config.WORLD_HEIGHT - 8 * Config.WORLD_UNIT;
-
-		start = new Rectangle(Config.WORLD_WIDTH / 2 - 2 * Config.WORLD_UNIT,
+		startBounds = new Rectangle(Config.WORLD_WIDTH / 2 - 2 * Config.WORLD_UNIT,
 				Config.WORLD_HEIGHT - 9 * Config.WORLD_UNIT, 4 * Config.WORLD_UNIT, Config.WORLD_UNIT);
-		about = new Rectangle(Config.WORLD_WIDTH / 2 - 2 * Config.WORLD_UNIT,
+		aboutBounds = new Rectangle(Config.WORLD_WIDTH / 2 - 2 * Config.WORLD_UNIT,
 				Config.WORLD_HEIGHT - 11 * Config.WORLD_UNIT, 4 * Config.WORLD_UNIT, Config.WORLD_UNIT);
-		exit = new Rectangle(Config.WORLD_WIDTH / 2 - 2 * Config.WORLD_UNIT,
+		exitBounds = new Rectangle(Config.WORLD_WIDTH / 2 - 2 * Config.WORLD_UNIT,
 				Config.WORLD_HEIGHT - 13 * Config.WORLD_UNIT, 4 * Config.WORLD_UNIT, Config.WORLD_UNIT);
 
-		shapeRenderer = new ShapeRenderer();
+		shapeDebugRenderer = new ShapeRenderer();
 
 	}
 
@@ -44,17 +41,17 @@ public class MainMenuScreen extends AbstractScreen {
 			Gdx.app.log("INFO", "Click ! " + "X = " + Gdx.input.getX() + " Y = " + Gdx.input.getY());
 			camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-			if (start.contains(touchPoint.x, touchPoint.y)) {
+			if (startBounds.contains(touchPoint.x, touchPoint.y)) {
 				main.setScreen(new DataScreen(main));
 				Gdx.app.log("INFO", "Am intrat pe screen-ul de data");
 			}
 
-			if (about.contains(touchPoint.x, touchPoint.y)) {
+			if (aboutBounds.contains(touchPoint.x, touchPoint.y)) {
 				main.setScreen(new AboutScreen(main));
 				Gdx.app.log("INFO", "Am intrat pe screen-ul de about");
 			}
 
-			if (exit.contains(touchPoint.x, touchPoint.y)) {
+			if (exitBounds.contains(touchPoint.x, touchPoint.y)) {
 				Gdx.app.log("INFO", "Quitting the app");
 				Gdx.app.exit();
 			}
@@ -62,13 +59,17 @@ public class MainMenuScreen extends AbstractScreen {
 		}
 	}
 
+	/**
+	 * Used only for debug purpouses.
+	 */
+	@SuppressWarnings("unused")
 	private void drawDebug() {
-		shapeRenderer.setProjectionMatrix(camera.combined);
-		shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-		Utils.drawDebugRectangle(shapeRenderer, start);
-		Utils.drawDebugRectangle(shapeRenderer, about);
-		Utils.drawDebugRectangle(shapeRenderer, exit);
-		shapeRenderer.end();
+		shapeDebugRenderer.setProjectionMatrix(camera.combined);
+		shapeDebugRenderer.begin(ShapeRenderer.ShapeType.Line);
+		Utils.drawDebugRectangle(shapeDebugRenderer, startBounds);
+		Utils.drawDebugRectangle(shapeDebugRenderer, aboutBounds);
+		Utils.drawDebugRectangle(shapeDebugRenderer, exitBounds);
+		shapeDebugRenderer.end();
 	}
 
 	public void draw() {
