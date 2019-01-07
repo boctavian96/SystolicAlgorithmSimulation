@@ -10,6 +10,10 @@ public class HardMultiplication {
 	public static final int[][] TEST_DATA_1 = new int[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
 	public static final int[][] TEST_DATA_2 = new int[][] { { 4, 6, 9 }, { 3, 2, 1 }, { 5, 6, 1 } };
 
+	private HardMultiplication() {
+		// Nope.
+	}
+
 	/**
 	 * Hard coded version. It's not used in the program. Only for debugging
 	 * purposes.

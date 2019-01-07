@@ -8,6 +8,6 @@ public final class Config {
 	public static final float WORLD_UNIT = 32f;
 
 	private Config() {
-		// Do nothing
+		// Do nothing.
 	}
 }
