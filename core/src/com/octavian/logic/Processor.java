@@ -1,7 +1,5 @@
 package com.octavian.logic;
 
-import java.util.List;
-
 public class Processor {
 	private Integer number;
 
@@ -24,17 +22,14 @@ public class Processor {
 		this.downProcessor = down;
 	}
 
-	public boolean isValid() {
+	private boolean isValid() {
 		return upper != null && left != null;
 	}
 
-	public List<Processor> process(List<Processor> processors) {
-
+	public void process() {
 		if (isValid()) {
 			number += upper * left;
 		}
-
-		return processors;
 	}
 
 	public Integer getUpper() {

@@ -77,7 +77,7 @@ public class ProcessorArchitecture {
 
 	public void process() {
 		for (Processor p : processors) {
-			p.process(processors);
+			p.process();
 		}
 
 	}
